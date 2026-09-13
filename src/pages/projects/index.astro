@@ -8,12 +8,14 @@ const projects = Object.entries(projectFiles)
     const filename = path.split('/').pop()?.replace('.astro', '') || '';
     if (filename === 'index') return null;
     const url = `/projects/${filename}`;
-    const title = mod.title || mod.frontmatter?.title || filename;
-    const description = mod.description || mod.frontmatter?.description || '';
+    const title = mod.projectTitle || mod.frontmatter?.projectTitle || mod.title || mod.frontmatter?.title || filename;
+    const description = mod.projectDescription || mod.frontmatter?.projectDescription || mod.description || mod.frontmatter?.description || '';
+    const tags = mod.tags || mod.frontmatter?.tags || [];
     return {
       url,
       title,
       description,
+      tags,
       filename
     };
   })
@@ -33,7 +35,14 @@ const projects = Object.entries(projectFiles)
         {projects.map((project) => (
           <div class="project-card">
             <h2><a href={project?.url}>{project?.title}</a></h2>
-            {project?.description && <p>{project.description}</p>}
+            {project?.description && <p class="project-desc">{project.description}</p>}
+            {project?.tags && project.tags.length > 0 && (
+              <div class="card-tags">
+                {project.tags.map((tag: string) => (
+                  <span class="mini-tag">{tag}</span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -98,6 +107,9 @@ const projects = Object.entries(projectFiles)
     border-radius: 0.5rem;
     padding: 1.25rem;
     transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .project-card:hover {
@@ -107,12 +119,28 @@ const projects = Object.entries(projectFiles)
 
   .project-card h2 {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
   }
 
-  .project-card p {
+  .project-desc {
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  .mini-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
   }
 
   footer {
