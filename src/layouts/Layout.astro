@@ -23,6 +23,16 @@ const { title, description = "Personal Bio and Software Developer Profile" } = A
 	</head>
 	<body>
 		<div class="background-grid"></div>
+		<nav class="top-nav">
+			<div class="nav-container">
+				<a href="/" class="nav-logo">GTREF</a>
+				<div class="nav-links">
+					<a href="/">Home</a>
+					<a href="/projects">Projects</a>
+					<a href="https://gtref.github.io/blog" target="_blank" rel="noopener noreferrer">Blog ↗</a>
+				</div>
+			</div>
+		</nav>
 		<slot />
 	</body>
 </html>
@@ -61,6 +71,49 @@ const { title, description = "Personal Bio and Software Developer Profile" } = A
 		flex-direction: column;
 		position: relative;
 		overflow-x: hidden;
+	}
+
+	.top-nav {
+		width: 100%;
+		border-bottom: 1px solid var(--card-border);
+		background-color: rgba(11, 15, 25, 0.8);
+		backdrop-filter: blur(12px);
+		position: sticky;
+		top: 0;
+		z-index: 50;
+	}
+
+	.nav-container {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 0.85rem 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.nav-logo {
+		font-weight: 700;
+		font-size: 1.1rem;
+		background: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	.nav-links a {
+		color: var(--text-muted);
+		font-size: 0.9rem;
+		font-weight: 500;
+		transition: color 0.2s ease;
+	}
+
+	.nav-links a:hover {
+		color: #ffffff;
 	}
 
 	.background-grid {

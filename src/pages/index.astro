@@ -2,19 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 
 const projectFiles = import.meta.glob('./projects/*.astro', { eager: true });
-const projects = Object.entries(projectFiles).map(([path, mod]: [string, any]) => {
-  const filename = path.split('/').pop()?.replace('.astro', '') || '';
-  const url = `/projects/${filename}`;
-  // Extract info if available from exported properties or default to filename/title
-  const title = mod.title || mod.frontmatter?.title || filename;
-  const description = mod.description || mod.frontmatter?.description || '';
-  return {
-    url,
-    title,
-    description,
-    filename
-  };
-});
+const projects = Object.entries(projectFiles)
+  .map(([path, mod]: [string, any]) => {
+    const filename = path.split('/').pop()?.replace('.astro', '') || '';
+    if (filename === 'index') return null;
+    const url = `/projects/${filename}`;
+    const title = mod.projectTitle || mod.frontmatter?.projectTitle || mod.title || mod.frontmatter?.title || filename;
+    const description = mod.projectDescription || mod.frontmatter?.projectDescription || mod.description || mod.frontmatter?.description || '';
+    const tags = mod.tags || mod.frontmatter?.tags || [];
+    return {
+      url,
+      title,
+      description,
+      tags,
+      filename
+    };
+  })
+  .filter(Boolean);
 ---
 
 <Layout title="GTREF — Personal Bio & Profile">
@@ -47,8 +51,15 @@ const projects = Object.entries(projectFiles).map(([path, mod]: [string, any]) =
 			<div class="projects-grid">
 				{projects.map((project) => (
 					<div class="project-card">
-						<h3><a href={project.url}>{project.title}</a></h3>
-						{project.description && <p>{project.description}</p>}
+						<h3><a href={project?.url}>{project?.title}</a></h3>
+						{project?.description && <p class="project-desc">{project.description}</p>}
+						{project?.tags && project.tags.length > 0 && (
+							<div class="card-tags">
+								{project.tags.map((tag: string) => (
+									<span class="mini-tag">{tag}</span>
+								))}
+							</div>
+						)}
 					</div>
 				))}
 			</div>
@@ -203,8 +214,11 @@ const projects = Object.entries(projectFiles).map(([path, mod]: [string, any]) =
 		background-color: rgba(255, 255, 255, 0.03);
 		border: 1px solid var(--card-border);
 		border-radius: 0.5rem;
-		padding: 1rem;
+		padding: 1.25rem;
 		transition: transform 0.2s ease, border-color 0.2s ease;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
 
 	.project-card:hover {
@@ -214,12 +228,28 @@ const projects = Object.entries(projectFiles).map(([path, mod]: [string, any]) =
 
 	.project-card h3 {
 		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
 	}
 
-	.project-card p {
+	.project-desc {
 		font-size: 0.9rem;
 		color: var(--text-muted);
+	}
+
+	.card-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		margin-top: 0.25rem;
+	}
+
+	.mini-tag {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		background: rgba(99, 102, 241, 0.1);
+		color: #a5b4fc;
+		border: 1px solid rgba(99, 102, 241, 0.2);
+		padding: 0.15rem 0.5rem;
+		border-radius: 0.25rem;
 	}
 
 	.snippet-section {
