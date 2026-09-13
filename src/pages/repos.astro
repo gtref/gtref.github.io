@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const repos = [
+  {
+    name: "satiscode",
+    description: "A lightweight IDE designed to be light by design without AI bloat.",
+    stars: 12,
+    forks: 3,
+    url: "https://github.com/gtref/satiscode",
+    language: "TypeScript"
+  },
+  {
+    name: "gtref.github.io",
+    description: "Personal bio, portfolio website, and profile built with Astro.",
+    stars: 8,
+    forks: 2,
+    url: "https://github.com/gtref/gtref.github.io",
+    language: "Astro"
+  },
+  {
+    name: "c-system-utils",
+    description: "A collection of low-level system utilities written in C.",
+    stars: 15,
+    forks: 4,
+    url: "https://github.com/gtref/c-system-utils",
+    language: "C"
+  },
+  {
+    name: "dotfiles",
+    description: "Personal development environment, terminal configurations, and scripts.",
+    stars: 5,
+    forks: 1,
+    url: "https://github.com/gtref/dotfiles",
+    language: "Shell"
+  }
+];
+---
+
+<Layout title="Active Repositories | GTREF">
+  <main class="container">
+    <header class="page-header">
+      <a href="/" class="back-link">&larr; Back to Home</a>
+      <h1 class="title">Active Repositories</h1>
+      <p class="subtitle">A list of my most active GitHub repositories.</p>
+    </header>
+
+    <section class="card repos-section">
+      <div class="repos-grid">
+        {repos.map((repo) => (
+          <div class="repo-card">
+            <div class="repo-header">
+              <h2><a href={repo.url} target="_blank" rel="noopener noreferrer">{repo.name} ↗</a></h2>
+              <span class="repo-lang">{repo.language}</span>
+            </div>
+            <p class="repo-desc">{repo.description}</p>
+            <div class="repo-stats">
+              <span class="stat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                {repo.stars} stars
+              </span>
+              <span class="stat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+                {repo.forks} forks
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; {new Date().getFullYear()} GTREF. Built with Astro.</p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.025em;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .repos-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .repo-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .repo-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+
+  .repo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .repo-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .repo-lang {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .repo-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    flex-grow: 1;
+  }
+
+  .repo-stats {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+</style>
