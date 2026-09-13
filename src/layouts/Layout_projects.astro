@@ -1,0 +1,125 @@
+---
+import MainLayout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  projectTitle?: string;
+  projectDescription?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  description,
+  projectTitle,
+  projectDescription,
+  githubUrl,
+  liveUrl,
+  tags = []
+} = Astro.props;
+---
+
+<MainLayout title={title} description={description}>
+  <header class="project-header">
+    <a href="/projects" class="back-link">&larr; Back to Projects</a>
+    
+    {projectTitle && <h1 class="project-title">{projectTitle}</h1>}
+    {projectDescription && <p class="project-subtitle">{projectDescription}</p>}
+
+    {tags.length > 0 && (
+      <div class="tag-list">
+        {tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+
+    {(githubUrl || liveUrl) && (
+      <div class="project-links">
+        {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="btn primary">Live Demo</a>}
+        {githubUrl && <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="btn secondary">Source Code</a>}
+      </div>
+    )}
+  </header>
+
+  <main class="project-content">
+    <slot />
+  </main>
+</MainLayout>
+
+<style>
+  .project-header {
+    max-width: 900px;
+    margin: 4rem auto 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-subtitle {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .btn.primary {
+    background: var(--accent-color);
+    color: #fff;
+  }
+
+  .btn.secondary {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+  }
+
+  .project-content {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 0 1.5rem;
+  }
+</style>
