@@ -46,14 +46,16 @@ const {
   </header>
 
   <main class="project-content">
-    <slot />
+    <div class="content-card">
+      <slot />
+    </div>
   </main>
 </MainLayout>
 
 <style>
   .project-header {
-    max-width: 900px;
-    margin: 4rem auto 2rem;
+    max-width: 820px;
+    margin: 3rem auto 1.5rem;
     padding: 0 1.5rem;
   }
 
@@ -62,11 +64,17 @@ const {
     font-size: 0.875rem;
     display: inline-block;
     margin-bottom: 1.5rem;
+    color: var(--text-muted);
+  }
+
+  .back-link:hover {
+    color: var(--accent-color);
   }
 
   .project-title {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2.35rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -75,8 +83,8 @@ const {
 
   .project-subtitle {
     color: var(--text-muted);
-    font-size: 1.125rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
   }
 
   .tag-list {
@@ -89,8 +97,9 @@ const {
   .tag {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
   }
@@ -98,28 +107,52 @@ const {
   .project-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
   }
 
   .btn {
-    padding: 0.5rem 1.25rem;
-    border-radius: 6px;
-    font-weight: 500;
+    padding: 0.65rem 1.25rem;
+    border-radius: 0.6rem;
+    font-weight: 600;
     font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    text-decoration: none;
   }
 
   .btn.primary {
-    background: var(--accent-color);
+    background: var(--accent-gradient);
     color: #fff;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
   }
 
   .btn.secondary {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
+    color: var(--text-heading);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
   }
 
   .project-content {
-    max-width: 900px;
+    max-width: 820px;
     margin: 0 auto 4rem;
     padding: 0 1.5rem;
+  }
+
+  .content-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1.15rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    line-height: 1.7;
+    color: var(--text-main);
   }
 </style>
