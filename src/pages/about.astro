@@ -1,0 +1,590 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const stacks = [
+  {
+    name: "Next.js",
+    category: "Full-Stack & React Framework",
+    description: "Production-grade React framework with SSR, App Router, and server actions.",
+    badge: "SSR / SSG"
+  },
+  {
+    name: "React.js",
+    category: "Frontend UI Library",
+    description: "Component-driven reactive web applications with stateful hooks and fast UI updates.",
+    badge: "UI / SPA"
+  }
+];
+
+const languages = [
+  { name: "C", type: "Low-level / Systems", desc: "Memory management, algorithms & hardware interfacing" },
+  { name: "C++", type: "Systems & OOP", desc: "High performance computing, data structures & object design" },
+  { name: "Python", type: "Scripting / Backend", desc: "Data processing, automations, and quick tool prototyping" },
+  { name: "HTML", type: "Markup & Structure", desc: "Semantic, accessible HTML5 layouts" },
+  { name: "CSS", type: "Styling & Design", desc: "Modern Flexbox, CSS Grid, animations & responsive styling" },
+  { name: "JS", type: "Scripting & Frontend", desc: "Dynamic client-side interactivity, async programming" },
+  { name: "TS", type: "Typed Web Development", desc: "Strict type safety for scalable, reliable codebases" },
+  { name: "PHP", type: "Server-side Web", desc: "Backend web scripts and server rendering" },
+  { name: "Bash", type: "Shell Scripting", desc: "Unix environment automation, pipelines, and CLI tooling" },
+  { name: "PowerShell", type: "Task Automation", desc: "Windows scripting, administrative workflows, and automation" },
+  { name: "Astro", type: "Modern Web Architecture", desc: "Content-focused static site generation and zero-JS islands" }
+];
+---
+
+<Layout title="About Me | GTREF" description="About GTREF - Year 11 student at St Peter's College Palmerston North, developer and tech enthusiast.">
+  <main class="container">
+    <header class="page-header">
+      <a href="/" class="back-link">&larr; Back to Home</a>
+      <div class="header-content">
+        <div class="avatar-badge">
+          <span class="avatar-char">GT</span>
+        </div>
+        <div>
+          <h1 class="page-title">About Me</h1>
+          <p class="subtitle">Developer &amp; Tech Enthusiast</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Bio & Education Card -->
+    <section class="card profile-card">
+      <div class="card-header">
+        <span class="pill-badge">Student &amp; Builder</span>
+        <span class="live-status"><span class="dot"></span> Palmerston North, NZ</span>
+      </div>
+      <h2>Kia Ora, I'm GTREF</h2>
+      <p class="bio-lead">
+        I am a <strong>Year 11 student at St Peter's College Palmerston North</strong> with an eager passion for software engineering, systems design, and web architecture.
+      </p>
+      <p class="bio-text">
+        I enjoy exploring both low-level mechanics and cutting-edge frontend interfaces—ranging from crafting compiled systems in C and C++, to orchestrating rich, high-performance web applications using modern web ecosystems.
+      </p>
+
+      <div class="school-banner">
+        <div class="school-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </div>
+        <div class="school-details">
+          <span class="school-role">Education</span>
+          <span class="school-name">St Peter's College, Palmerston North</span>
+          <span class="school-year">Year 11 Student</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Stacks -->
+    <section class="card stacks-card">
+      <div class="section-title-wrap">
+        <h2>Primary Stacks</h2>
+        <span class="section-subtitle">Web frameworks &amp; component architectures I build with</span>
+      </div>
+      <div class="stacks-grid">
+        {stacks.map((stack) => (
+          <div class="stack-box">
+            <div class="stack-top">
+              <span class="stack-name">{stack.name}</span>
+              <span class="stack-badge">{stack.badge}</span>
+            </div>
+            <div class="stack-cat">{stack.category}</div>
+            <p class="stack-desc">{stack.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Languages Grid -->
+    <section class="card languages-card">
+      <div class="section-title-wrap">
+        <h2>Languages &amp; Technologies</h2>
+        <span class="section-subtitle">A comprehensive toolkit spanning low-level, web, scripting, and shell</span>
+      </div>
+
+      <div class="languages-grid">
+        {languages.map((lang) => (
+          <div class="language-item">
+            <div class="lang-header">
+              <span class="lang-name">{lang.name}</span>
+              <span class="lang-type">{lang.type}</span>
+            </div>
+            <p class="lang-desc">{lang.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Interactive Terminal / Quick Facts -->
+    <section class="card terminal-card">
+      <div class="terminal-bar">
+        <div class="terminal-buttons">
+          <span class="term-btn red"></span>
+          <span class="term-btn yellow"></span>
+          <span class="term-btn green"></span>
+        </div>
+        <span class="terminal-title">whoami.sh</span>
+      </div>
+      <div class="terminal-body">
+        <p><span class="prompt">$</span> cat ~/gtref/summary.json</p>
+        <pre class="json-code"><code>{`{
+  "name": "GTREF",
+  "role": "Year 11 Student & Developer",
+  "institution": "St Peter's College Palmerston North",
+  "primary_stacks": ["Next.js", "React.js"],
+  "languages": [
+    "C", "C++", "Python", "HTML", "CSS",
+    "JS", "TS", "PHP", "Bash", "PowerShell", "Astro"
+  ],
+  "status": "Learning, experimenting & shipping code"
+}`}</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation & CTA -->
+    <section class="cta-actions">
+      <a href="/projects" class="action-btn primary">
+        View My Projects
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+      <a href="https://github.com/gtref" target="_blank" rel="noopener noreferrer" class="action-btn secondary">
+        GitHub Profile
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+      </a>
+    </section>
+
+    <footer>
+      <p>&copy; {new Date().getFullYear()} GTREF. Built with Astro.</p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    color: var(--text-muted);
+  }
+
+  .back-link:hover {
+    color: var(--accent-color);
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .avatar-badge {
+    width: 68px;
+    height: 68px;
+    border-radius: 1rem;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #ffffff;
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+    flex-shrink: 0;
+  }
+
+  .page-title {
+    font-size: 2.35rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: var(--card-border-hover);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pill-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: 1px solid var(--tag-border);
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+  }
+
+  .live-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .live-status .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+
+  .profile-card h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .bio-lead {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .bio-lead strong {
+    color: var(--accent-color);
+  }
+
+  .bio-text {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .school-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(99, 102, 241, 0.06);
+    border: 1px solid var(--tag-border);
+    border-radius: 0.875rem;
+  }
+
+  .school-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.65rem;
+    background: var(--accent-gradient);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .school-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .school-role {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .school-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-heading);
+  }
+
+  .school-year {
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+
+  .section-title-wrap {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title-wrap h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.25rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .stacks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .stack-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: 0.875rem;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .stack-box:hover {
+    transform: translateY(-3px);
+    border-color: var(--card-border-hover);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .stack-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stack-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-heading);
+  }
+
+  .stack-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 0.35rem;
+    border: 1px solid var(--tag-border);
+  }
+
+  .stack-cat {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-color);
+  }
+
+  .stack-desc {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .languages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
+  }
+
+  .language-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: all 0.2s ease;
+  }
+
+  .language-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--card-border-hover);
+    background: var(--tag-bg);
+  }
+
+  .lang-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .lang-name {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-heading);
+  }
+
+  .lang-type {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .lang-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Terminal Card */
+  .terminal-card {
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--code-bg);
+    border: 1px solid var(--card-border);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--card-border);
+    position: relative;
+  }
+
+  .terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .term-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .term-btn.red { background-color: #ef4444; }
+  .term-btn.yellow { background-color: #f59e0b; }
+  .term-btn.green { background-color: #10b981; }
+
+  .terminal-title {
+    margin: 0 auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+
+  .prompt {
+    color: #10b981;
+    font-weight: 700;
+    margin-right: 0.5rem;
+  }
+
+  .json-code {
+    margin-top: 0.75rem;
+    color: var(--text-main);
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .action-btn.primary {
+    background: var(--accent-gradient);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  }
+
+  .action-btn.secondary {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-heading);
+  }
+
+  .action-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .school-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+    }
+
+    .action-btn {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>
