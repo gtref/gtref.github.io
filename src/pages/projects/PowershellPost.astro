@@ -1,0 +1,23 @@
+---
+import ProjectLayout from '../../layouts/Layout_projects.astro';
+
+export const projectTitle = "PowershellPost";
+export const projectDescription = "A simple powershell script blogging tool.";
+export const tags = ['PowerShell', 'Blogging'];
+export const githubUrl = "https://github.com/gtref/PowershellPost";
+export const liveUrl = "https://gtref.github.io/PowershellPost"
+---
+
+<ProjectLayout
+  title="PowerShell Post | Portfolio"
+  projectTitle={projectTitle}
+  projectDescription={projectDescription}
+  tags={tags}
+  githubUrl={githubUrl}
+  liveUrl={liveUrl}
+>
+  <p>
+  Powershell post is a version of <a href="https://github.com/cfenollosa/bashblog">BashBlog</a> that is written in the windows powershell scripting language. It's purpose
+  is to simplify blogging for those who use the CLI for blogging and who use windows.
+</p>
+</ProjectLayout>
